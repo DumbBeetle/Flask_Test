@@ -2,9 +2,9 @@ pipeline {
     agent {
         label 'agent1'
     }
-
-    // Initialize a global variable at the top
-    def gitCheck = ''
+    environment  {
+        GIT_CHECK = 'environment'
+    }
 
     stages {
         stage('checkout') {
@@ -12,21 +12,23 @@ pipeline {
                 checkout scm
             }
         }
-
         stage('Get Git SHA') {
             steps {
                 script {
-                    gitCheck = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-                    echo "Git SHA stored in gitCheck: ${gitCheck}"
+                    def GIT_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                    env.GIT_CHECK = GIT_SHA
+                    echo "Git SHA is: ${GIT_SHA}"
+                    echo "Git Check is: ${env.GIT_CHECK}"
                 }
             }
         }
-
-        stage('Use Git SHA Later') {
-            steps {
-                script {
-                    echo "Using gitCheck: ${gitCheck}"  // This will work
-                }
+    }
+    post{
+        always{
+            script{
+                def time = sh(script: 'date +"%T"', returnStdout: true).trim()
+                def date = sh(script: 'date +"%D"', returnStdout: true).trim()
+                echo "Test was done on Date: ${date}, Time: ${time}"
             }
         }
     }
