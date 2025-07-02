@@ -24,7 +24,7 @@ pipeline {
     post{
         always{
             script{
-                echo "Git SHA is: ${GIT_SHA}"
+                echo "Git SHA is: ${env.GIT_SHA}"
                 def time = sh(script: 'date +"%T"', returnStdout: true).trim()
                 def date = sh(script: 'date +"%D"', returnStdout: true).trim()
                 echo "Current Date: ${date}"
