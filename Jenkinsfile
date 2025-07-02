@@ -2,8 +2,6 @@ pipeline {
     agent {
         label 'agent1'
     }
-    environment  {
-    }
 
     stages {
         stage('checkout') {
