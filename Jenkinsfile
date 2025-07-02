@@ -17,13 +17,18 @@ pipeline {
                 script {
                     def GIT_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
                     env.GIT_SHA = GIT_SHA
-                    echo "Git SHA is: ${GIT_SHA}"
-
-                    def time = sh(script: 'date +"%T"', returnStdout: true).trim()
-                    def date = sh(script: 'date +"%D"', returnStdout: true).trim()
-                    echo "Current Date: ${date}"
-                    echo "Current Time: ${time}"
                 }
+            }
+        }
+    }
+    post{
+        always{
+            script{
+                echo "Git SHA is: ${GIT_SHA}"
+                def time = sh(script: 'date +"%T"', returnStdout: true).trim()
+                def date = sh(script: 'date +"%D"', returnStdout: true).trim()
+                echo "Current Date: ${date}"
+                echo "Current Time: ${time}"
             }
         }
     }
