@@ -1,8 +1,9 @@
 from flask import Flask, render_template
+import os
 
 app = Flask(__name__)
-host = "0.0.0.0"
-port = 5000
+host = os.getenv('IP')
+PORT = int(os.getenv('PORT'))
 
 
 @app.route('/')
@@ -19,4 +20,4 @@ def page_not_found(error):
     return render_template("page_404.html"), 404
 
 if __name__ == '__main__':
-    app.run(debug=True, host=host, port=port)
+    app.run(debug=True, host=host, port=PORT)

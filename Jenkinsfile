@@ -9,11 +9,16 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Get Git SHA') {
+        stage('get git sha') {
             steps {
                 script {
                     env.GIT_CHECK = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
                 }
+            }
+        }
+        stage('install') {
+            steps {
+               echo "${python3 -v}"
             }
         }
     }
