@@ -3,7 +3,6 @@ pipeline {
         label 'agent1'
     }
     environment  {
-        GIT_CHECK = 'environment'
     }
 
     stages {
@@ -29,6 +28,7 @@ pipeline {
                 def time = sh(script: 'date +"%T"', returnStdout: true).trim()
                 def date = sh(script: 'date +"%D"', returnStdout: true).trim()
                 echo "Test was done on Date: ${date}, Time: ${time}"
+                echo "${env.GIT_CHECK}"
             }
         }
     }
