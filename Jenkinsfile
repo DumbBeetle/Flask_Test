@@ -11,6 +11,8 @@ pipeline {
         stage('checkout') {
             steps {
                 checkout scm
+                        def GIT_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                        env.GIT_SHA = GIT_SHA
             }
         }
 
@@ -18,10 +20,7 @@ pipeline {
     post {
         always {
             script {
-                        def GIT_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-                        env.GIT_SHA = GIT_SHA
                         echo "Git SHA is: ${GIT_SHA}"
-
                         def time = sh(script: 'date +"%T"', returnStdout: true).trim()
                         def date = sh(script: 'date +"%D"', returnStdout: true).trim()
                         echo "Current Date: ${date}"
