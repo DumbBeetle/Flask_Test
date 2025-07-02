@@ -3,7 +3,7 @@ pipeline {
         label 'agent1'
     }
     environment  {
-        GIT_SHA = ''
+        GIT_CHECK = ''
     }
 
     stages {
@@ -16,8 +16,8 @@ pipeline {
             steps {
                 script {
                     def GIT_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-                    env.GIT_SHA = GIT_SHA
-                    echo "Git SHA is: ${env.GIT_SHA}"
+                    env.GIT_CHECK = GIT_SHA
+                    echo "Git SHA is: ${GIT_CHECK}"
                 }
             }
         }
