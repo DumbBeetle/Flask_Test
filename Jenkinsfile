@@ -2,7 +2,8 @@ pipeline {
     agent {
         label 'agent1'
     }
-    environment  {
+
+    environment {
         GIT_CHECK = ''
     }
 
@@ -12,6 +13,7 @@ pipeline {
                 checkout scm
             }
         }
+
         stage('Get Git SHA') {
             steps {
                 script {
@@ -22,13 +24,25 @@ pipeline {
                 }
             }
         }
+
+        stage('Use Git SHA Later') {
+            steps {
+                script {
+                    echo "Previously stored GIT_CHECK: ${env.GIT_CHECK}"
+
+                    def laterUse = env.GIT_CHECK
+                    echo "Used in variable: ${laterUse}"
+                }
+            }
+        }
     }
-    post{
-        always{
-            script{
-                def time = sh(script: 'date +"%T"', returnStdout: true).trim()
-                def date = sh(script: 'date +"%D"', returnStdout: true).trim()
-                echo "Test was done on Date: ${date}, Time: ${time}"
+
+    post {
+        always {
+            script {
+                def timestamp = sh(script: 'date +"%D %T"', returnStdout: true).trim()
+                echo "Test was done at: ${timestamp}"
+                echo "Final GIT_CHECK value: ${env.GIT_CHECK}"
             }
         }
     }
