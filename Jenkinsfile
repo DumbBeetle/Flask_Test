@@ -36,6 +36,7 @@ pipeline {
                         echo "Current Date: ${date}"
                         echo "Current Time: ${time}"
                 }
+            }
         }
     }
 }
