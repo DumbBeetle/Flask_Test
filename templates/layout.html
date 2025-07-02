@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+	{% block head %}
+	<link rel="stylesheet" href="{{ url_for('static', filename='style/reset.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style/layout.css') }}">
+	<title>{% block title %}{% endblock %} Page</title>
+	{% endblock %}
+</head>
+<body>
+	<nav>
+		<a class="nav_home" href="/">Home</a>
+		<div>
+			<ul>
+				<li><a href="/about">About</a></li>
+				<li><a href="/test">Test</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="content">{% block content %}
+		<h1>Test</h1>
+		{% endblock %}
+	</div>
+	<footer>
+		<hr>
+		{% block footer %}
+		<p>this project was made for the purpose of Lorem ipsum dolor sit amet, and Lorem ipsum dolor sit.</p>
+		<p>&copy; Copyright 2025 by Lorem ipsum.</p>
+		{% endblock %}
+	</footer>
+</body>
+</html>
