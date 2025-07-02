@@ -17,7 +17,8 @@ pipeline {
                 script {
                     def GIT_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
                     env.GIT_CHECK = GIT_SHA
-                    echo "Git SHA is: ${env.GIT_CHECK}"
+                    echo "Git SHA is: ${GIT_SHA}"
+                    echo "Git Check is: ${env.GIT_CHECK}"
                 }
             }
         }
