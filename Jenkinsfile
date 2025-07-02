@@ -11,8 +11,12 @@ pipeline {
         stage('checkout') {
             steps {
                 checkout scm
-                        def GIT_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-                        env.GIT_SHA = GIT_SHA
+            }
+        }
+        stage("get git data"){
+            script{
+                    def GIT_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                    env.GIT_SHA = GIT_SHA
             }
         }
 
