@@ -14,13 +14,14 @@ pipeline {
             }
         }
         stage("get git data"){
-            script{
+            steps{
+                  script{
                     def GIT_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
                     env.GIT_SHA = GIT_SHA
+                    }
             }
-        }
-
-    }
+         }
+     }
     post {
         always {
             script {
