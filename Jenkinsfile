@@ -18,7 +18,7 @@ pipeline {
         }
         stage('install') {
             steps {
-               echo "${python -v}"
+               sh 'python3 --version || python --version'
             }
         }
     }
