@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 HOST = os.getenv('HOST', '127.0.0.1')
-PORT = int(os.getenv('PORT', '8080'))
+PORT = int(os.getenv('PORT', '5000'))
 DEBUG = bool(os.getenv('DEBUG', False))
 
 

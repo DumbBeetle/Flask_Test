@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         VENV = 'venv'
-        PORT = '8080'
+        PORT = '5000'
         HOST = '0.0.0.0'
     }
 
@@ -34,7 +34,6 @@ pipeline {
            steps{
              sh '''
              env.venv/bin/python -m unittest discover
-             DEBUG=True PORT=9080 env.venv/bin/python app.py
              '''
            }
         }
