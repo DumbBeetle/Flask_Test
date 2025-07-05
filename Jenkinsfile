@@ -32,7 +32,7 @@ pipeline {
         }
         stage("unittest"){
            steps{
-             sh python test_app.py PORT=env.PORT host=env.HOST
+             sh 'python test_app.py PORT=env.PORT host=env.HOST'
            }
         }
     }
