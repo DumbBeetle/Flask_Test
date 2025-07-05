@@ -34,7 +34,7 @@ pipeline {
            steps{
              sh '''
              env.venv/bin/python -m unittest discover
-             env.venv/bin/python app.py DEBUG=True PORT='9080'
+             DEBUG=True PORT=9080 env.venv/bin/python app.py
              '''
            }
         }
