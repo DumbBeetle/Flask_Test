@@ -30,12 +30,17 @@ pipeline {
             '''
             }
         }
-        stage("unittest"){
+        stage('unittest'){
            steps{
              sh '''
              env.venv/bin/python -m unittest discover
              '''
            }
+        }
+        stage('ls'){
+            steps{
+                sh 'ls'
+            }
         }
     }
     post{
