@@ -26,7 +26,6 @@ pipeline {
             steps {
             sh '''
                 python3 -m venv venv
-                .
                 pip install -r ./requirements.txt
             '''
             }
@@ -34,8 +33,7 @@ pipeline {
         stage("unittest"){
            steps{
              sh '''
-             . env.venv/bin/activate
-             python -m unittest discover
+             env.venv/bin/python -m unittest discover
              '''
            }
         }
