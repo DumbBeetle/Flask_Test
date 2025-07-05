@@ -4,6 +4,7 @@ pipeline {
     }
 
     environment {
+        VENV = 'venv'
         PORT = '8080'
         HOST = '0.0.0.0'
     }
@@ -25,14 +26,17 @@ pipeline {
             steps {
             sh '''
                 python3 -m venv venv
-                . venv/bin/activate
+                .
                 pip install -r ./requirements.txt
             '''
             }
         }
         stage("unittest"){
            steps{
-             sh 'python test_app.py PORT=env.PORT host=env.HOST'
+             sh '''
+             . env.venv/bin/activate
+             python -m unittest discover
+             '''
            }
         }
     }
