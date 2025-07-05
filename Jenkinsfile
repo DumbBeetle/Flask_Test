@@ -34,12 +34,13 @@ pipeline {
            steps{
              sh '''
              env.venv/bin/python -m unittest discover
+             env.venv/bin/python python app.py'
              '''
            }
         }
         stage('ls'){
             steps{
-                sh 'python app.py'
+                sh 'ls'
             }
         }
     }
