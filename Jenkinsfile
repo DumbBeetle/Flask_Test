@@ -34,7 +34,7 @@ pipeline {
            steps{
              sh '''
              env.venv/bin/python -m unittest discover
-             env.venv/bin/python python app.py
+             env.venv/bin/python app.py
              '''
            }
         }
