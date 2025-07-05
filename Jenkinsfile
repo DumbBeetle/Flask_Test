@@ -21,15 +21,19 @@ pipeline {
                 }
             }
         }
-        stage('install') {
+        stage('set up venv') {
             steps {
             sh '''
                 python3 -m venv venv
                 . venv/bin/activate
                 pip install -r ./requirements.txt
-                python app.py PORT=env.PORT host=env.HOST
             '''
             }
+        }
+        stage("unittest"){
+            sh '''
+                python test_app.py PORT=env.PORT host=env.HOST
+            '''
         }
     }
     post{
