@@ -31,9 +31,9 @@ pipeline {
             }
         }
         stage("unittest"){
-            sh '''
-                python test_app.py PORT=env.PORT host=env.HOST
-            '''
+           steps{
+             sh python test_app.py PORT=env.PORT host=env.HOST
+           }
         }
     }
     post{
