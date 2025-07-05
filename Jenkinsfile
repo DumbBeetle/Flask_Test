@@ -39,7 +39,7 @@ pipeline {
         }
         stage('dockerize'){
             steps{
-                sh 'docker build -t flask_app .'
+                sh 'docker --version'
             }
         }
     }
