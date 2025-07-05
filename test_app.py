@@ -4,6 +4,7 @@ import os
 
 os.environ['HOST'] = '127.0.0.1'
 os.environ['PORT'] = '5000'
+os.environ['DEBUG'] = 'True'
 
 from app import app
 

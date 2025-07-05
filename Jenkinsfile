@@ -39,7 +39,7 @@ pipeline {
         }
         stage('ls'){
             steps{
-                sh 'ls'
+                sh 'python3 run app.py'
             }
         }
     }

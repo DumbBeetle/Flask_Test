@@ -1,0 +1,6 @@
+Jenkinsfile
+__pycache__
+env.venv
+test_app.py
+venv
+.dockerignore
