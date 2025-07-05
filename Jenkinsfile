@@ -3,6 +3,11 @@ pipeline {
         label 'agent1'
     }
 
+    environment {
+        PORT = '8080'
+        HOST = '0.0.0.0'
+    }
+
     stages {
         stage('checkout') {
             steps {
@@ -22,7 +27,7 @@ pipeline {
                 python3 -m venv venv
                 . venv/bin/activate
                 pip install -r ./requirements.txt
-                python app.py
+                python app.py PORT=env.PORT host=env.HOST
             '''
             }
         }
