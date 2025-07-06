@@ -22,21 +22,21 @@ pipeline {
                 }
             }
         }
-//         stage('set up venv') {
-//             steps {
-//             sh '''
-//                 python3 -m venv env.venv
-//                 env.venv/bin/pip install -r ./requirements.txt
-//             '''
-//             }
-//         }
-//         stage('unittest'){
-//            steps{
-//              sh '''
-//              env.venv/bin/python -m unittest discover
-//              '''
-//            }
-//         }
+        stage('set up venv') {
+            steps {
+            sh '''
+                python3 -m venv env.venv
+                env.venv/bin/pip install -r ./requirements.txt
+            '''
+            }
+        }
+        stage('unittest'){
+           steps{
+             sh '''
+             env.venv/bin/python -m unittest discover
+             '''
+           }
+        }
         stage('dockerize'){
             steps{
                 sh 'docker build -t flask_app .'
