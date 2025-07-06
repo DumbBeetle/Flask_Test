@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                checkout scm
+                 git branch: 'master', url: 'https://github.com/DumbBeetle/Flask_Test'
             }
         }
         stage('get git sha') {
@@ -39,7 +39,17 @@ pipeline {
         }
         stage('dockerize'){
             steps{
-                sh 'docker build -t flask_app .'
+                 withCredentials([
+                    string(credentialsId: 'DOCKER_USERNAME', variable: 'DOCKER_USER'),
+                    string(credentialsId: 'DOCKER_TOKEN', variable: 'DOCKER_PASS')
+                ]) {
+                    sh '''
+                        docker build -t $DOCKER_USER/flask_app .
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                        docker push $DOCKER_USER/flask_app
+                        rm -rf ~/.docker
+                    '''
+                }
             }
         }
     }
