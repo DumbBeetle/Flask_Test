@@ -12,7 +12,8 @@ def home_page():
     deploy_date = os.getenv("DEPLOY_DATE", "N/A")
     deploy_time = os.getenv("DEPLOY_TIME", "N/A")
     git_sha = os.getenv("GIT_SHA", "N/A")
-    return render_template("index.html", deploy_date=deploy_date, deploy_time=deploy_time, git_sha=git_sha)
+    build_number = os.getenv("BUILD_NUMBER", "N/A")
+    return render_template("index.html", deploy_date=deploy_date, deploy_time=deploy_time, git_sha=git_sha, build_number=build_number)
 
 @app.route('/about')
 def about_page():
